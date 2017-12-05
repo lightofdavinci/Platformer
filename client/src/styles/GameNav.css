@@ -1,0 +1,20 @@
+.Game-nav a {
+  position: absolute;
+  top: 5px;
+  display: block;
+  color: #fff;
+  border: 1px solid #fff;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  padding: 6px 16px;
+  font-size: 22px;
+}
+
+.help-btn {
+  right: 105px;
+}
+
+.stats-btn {
+  right: 10px;
+}

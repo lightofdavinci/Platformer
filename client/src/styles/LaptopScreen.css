@@ -1,0 +1,26 @@
+.Laptop-screen {
+  width: 380px;
+  height: 210px;
+  position: absolute;
+  left: 50px;
+  top: 25px;
+  overflow: hidden;
+  background-color: #1f1a14;
+}
+
+.Laptop-screen h4 {
+  margin: 140px auto 10px auto;
+  width: 120px;
+  color: #fedf08;
+}
+
+.Laptop-progress-wrapper {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Laptop-progress-bar {
+  background-color: #fedf08;
+  height: 10px;
+}

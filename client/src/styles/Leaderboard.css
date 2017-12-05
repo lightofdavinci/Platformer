@@ -1,0 +1,83 @@
+.Leaderboard-title {
+  text-align: center;
+  margin-top: 0;
+  font-family: 'OpenSans-ExtraBold';
+  font-size: 60px;
+  color: #fedf08;
+  background-color: #9b8c6b;
+}
+
+.Leaderboard-table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 825px;
+  height: 468px;
+  overflow-y: scroll;
+  background-color: #9b8c6b;
+  font-size: 36px;
+}
+
+.Leaderboard-table::-webkit-scrollbar {
+  width: 20px;
+}
+
+.Leaderboard-table::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.Leaderboard-table::-webkit-scrollbar-thumb {
+  background-color: #fedf08;
+  outline: 1px solid #444;
+}
+
+.Leaderboard-header div {
+  display: inline-block;
+  text-align: center;
+}
+
+.Leaderboard-row div {
+  display: inline-block;
+  text-align: center;
+  margin-top: 3px;
+}
+
+.Leaderboard-rank {
+  background-color: #fedf08;
+  color: #d79503;
+  width: 120px;
+}
+
+.Leaderboard-id {
+  background-color: #d79503;
+  color: #e6e4be;
+  width: 100px;
+}
+
+.Leaderboard-name {
+  background-color: #fedf08;
+  color: #d79503;
+  max-width: 400px;
+  width: 400px;
+}
+
+.Leaderboard-time {
+  background-color: #d79503;
+  color: #e6e4be;
+  max-width: 400px;
+  width: 180px;
+}
+
+.Leaderboard-footer {
+  color: #fedf08;
+  background-color: #9b8c6b;
+  font-size: 28px;
+  width: 450px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+}

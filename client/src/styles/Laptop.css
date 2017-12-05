@@ -1,0 +1,66 @@
+.Laptop {
+  margin-left: 55px;
+  margin-top: 40px;
+  width: 480px;
+  position: relative;
+}
+
+.Laptop-top-side {
+  width: 400px;
+  height: 250px;
+  margin-left: 40px;
+  background-color: #9f793b;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: inset 1px 1px #aaa, inset -1px -1px 1px #e6e4be;
+}
+
+.Laptop-camera {
+  width: 10px;
+  height: 10px;
+  background-color: #e6e4be;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  position: absolute;
+  left: 238px;
+  top: 7px;
+  box-shadow: inset 1px 1px 1px #e6e4be;
+}
+
+.Laptop-bottom-side {
+  width: 480px;
+  height: 15px;
+  background-color: #9f793b;
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+}
+
+.Laptop-touch-pad {
+  width: 60px;
+  height: 6px;
+  position: absolute;
+  left: 210px;
+  background-color: #e6e4be;
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+}
+
+.Laptop-shadow {
+  width: 530px;
+  height: 20px;
+  bottom: -8px;
+  left: -25px;
+  background-color: #e6e4be;
+  position: absolute;
+  z-index: -1;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+@media only screen and (max-width: 800px) and (min-width: 400px) {
+  .Laptop {
+    margin-top: 30px;
+  }
+}

@@ -1,0 +1,63 @@
+.Cellphone {
+  padding: 0 30px;
+}
+.Cellphone-body {
+  width: 240px;
+  height: 410px;
+  background-color: #a07934;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  padding-top: 5px;
+}
+
+.Cellphone-camera {
+  width: 10px;
+  height: 10px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background-color: #e6e4be;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+.Cellphone-screen {
+  width: 220px;
+  height: 330px;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url('../images/pearl.jpg'); /* need to change later */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+.Cellphone-screen-btn {
+  display: inline-block;
+  height: 40px;
+  width: 115px;
+  margin-top: 30px;
+  background-color: #a07934;
+  color: #e6e4be;
+  font-size: 20px;
+  line-height: 40px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.Cellphone-btn {
+  width: 30px;
+  height: 30px;
+  background-color: #e6e4be;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 6px;
+}

@@ -1,0 +1,90 @@
+.outer {
+  display: table;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+}
+
+.register-form {
+  width: 300px;
+  height: 380px;
+  background-color: #9b8c6b;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+label {
+  color: #fedf08;
+}
+
+input {
+  display: block;
+  width: 250px;
+  height: 45px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.form-group {
+  width: 250px;
+  padding-top: 12px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-field {
+  font-size: 24px;
+  margin-top: 5px;
+  padding-left: 10px;
+  background-color: #fff;
+  color: #666;
+  outline: none;
+  border: none;
+}
+
+.form-field:focus {
+  outline-offset: -2px;
+  outline-color: -webkit-focus-ring-color;
+  outline-style: auto;
+  outline-width: 5px;
+  box-shadow: 0 0 7px #333;
+}
+
+.form-btn {
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fedf08;
+  font-size: 20px;
+  font-weight: 600;
+  color: #9b8c6b;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.form-toggle {
+  text-align: center;
+  color: #fedf08;
+}
+
+.form-toggle a {
+  text-align: center;
+  color: #fff;
+}

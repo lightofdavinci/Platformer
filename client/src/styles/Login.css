@@ -1,0 +1,8 @@
+.login-form {
+  width: 300px;
+  height: 295px;
+  background-color: #9b8c6b;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
