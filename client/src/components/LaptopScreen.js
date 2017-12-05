@@ -2,18 +2,15 @@ import React, { Component } from 'react';
 import * as THREE from 'three';
 import OrbitControls from 'three-orbitcontrols';
 import * as OBJLoader from 'three-obj-loader';
-import * as MTLLoader from 'three-mtl-loader';
 import Detector from '../scripts/detector';
 
 // Dragon with pearl(https://sketchfab.com/models/93d65f56fdd34311ad55112f90ba4a82) by Artec 3D(https://sketchfab.com/artec3d) is licensed under CC Attribution-ShareAlike(http://creativecommons.org/licenses/by-sa/4.0/)
 import dragonObj from '../obj/dragon.obj';
-import dragonMaterial from '../obj/dragon.mtl';
 import particleTexture from '../obj/particle.png';
 
 import '../styles/LaptopScreen.css';
 
 OBJLoader(THREE);
-MTLLoader(THREE);
 
 class LaptopScreen extends Component {
   constructor() {
@@ -52,25 +49,21 @@ class LaptopScreen extends Component {
     this.scene.add(light);
 
     /* Model */
-    const mtlLoader = new this.THREE.MTLLoader();
-    mtlLoader.load(dragonMaterial, materials => {
-      materials.preload();
-      const objLoader = new this.THREE.OBJLoader();
-      objLoader.load(
-        dragonObj,
-        dragon => {
-          dragon.position.y = 1;
-          this.scene.add(dragon);
-          setTimeout(() => {
-            this.setState({ hiddenCanvas: { display: 'block' } });
-          }, 300);
-        },
-        xhr => {
-          const loaded = Math.round(xhr.loaded / xhr.total * 100) + '%';
-          this.setState({ loadingPercentage: loaded });
-        }
-      );
-    });
+    const objLoader = new this.THREE.OBJLoader();
+    objLoader.load(
+      dragonObj,
+      dragon => {
+        dragon.position.y = 1;
+        this.scene.add(dragon);
+        setTimeout(() => {
+          this.setState({ hiddenCanvas: { display: 'block' } });
+        }, 300);
+      },
+      xhr => {
+        const loaded = Math.round(xhr.loaded / xhr.total * 100) + '%';
+        this.setState({ loadingPercentage: loaded });
+      }
+    );
 
     // create the particle variables
     const particleCount = 1800;

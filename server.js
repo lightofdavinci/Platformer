@@ -84,7 +84,7 @@ const stats = [
 ];
 
 server.get('/stats', (req, res) => {
-  res.json(stats);
+  res.status(200).json(stats);
 });
 
 server.listen(port, err => {
