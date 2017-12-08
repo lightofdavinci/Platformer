@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as THREE from 'three';
 import OrbitControls from 'three-orbitcontrols';
-import * as OBJLoader from 'three-obj-loader';
+import OBJLoader from "three-react-obj-loader";
 import Detector from '../scripts/detector';
 
 // Dragon with pearl(https://sketchfab.com/models/93d65f56fdd34311ad55112f90ba4a82) by Artec 3D(https://sketchfab.com/artec3d) is licensed under CC Attribution-ShareAlike(http://creativecommons.org/licenses/by-sa/4.0/)
@@ -10,12 +10,9 @@ import particleTexture from '../obj/particle.png';
 
 import '../styles/LaptopScreen.css';
 
-OBJLoader(THREE);
-
 class LaptopScreen extends Component {
   constructor() {
     super();
-    this.THREE = THREE;
     this.state = {
       hiddenCanvas: { display: 'none' },
       loadingPercentage: '0%'
@@ -49,7 +46,7 @@ class LaptopScreen extends Component {
     this.scene.add(light);
 
     /* Model */
-    const objLoader = new this.THREE.OBJLoader();
+    const objLoader = new OBJLoader();
     objLoader.load(
       dragonObj,
       dragon => {

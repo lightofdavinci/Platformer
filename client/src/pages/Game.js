@@ -5,24 +5,20 @@ import Timer from '../components/Timer';
 import * as CANNON from 'cannon';
 import * as THREE from 'three';
 
-
 import OrbitControls from 'three-orbitcontrols';
 import skyboxtexture from '../images/skybox.png';
 
-// Monteriggioni: HIGH quality(https://sketchfab.com/models/628f90b70c5547a5852862265c9b1f34) by omnidirectional(https://sketchfab.com/omnidirectional) is licensed under CC Attribution(http://creativecommons.org/licenses/by/4.0/)
-// import monteriggioniObj from '../obj/test.obj';
-// import monteriggioniMaterial from '../obj/test.mtl';
+// Tiki Treasure!(https://sketchfab.com/models/cbcf188a01f54d63a10f10c227c5a6ff) by glenatron(https://sketchfab.com/glenatron) is licensed under CC Attribution(http://creativecommons.org/licenses/by/4.0/)
+import shipObj from '../obj/pirate.obj';
+import shipMtl from '../obj/pirate.mtl';
+import { shipTextures } from '../textures/shipTextures.js';
 
-// import * as OBJLoader from 'three-obj-loader';
-// import * as MTLLoader from 'three-mtl-loader';
-
-// OBJLoader(THREE);
-// MTLLoader(THREE);
+import OBJLoader from "three-react-obj-loader";
+import MTLLoader from "three-react-mtl-loader";
 
 class Game extends Component {
   constructor() {
     super();
-    this.THREE = THREE;
     this.state = { startTimer: false };
   }
   render() {
@@ -75,7 +71,7 @@ class Game extends Component {
     const light = new THREE.DirectionalLight(0xffffbb, 3);
     light.position.set(-1, 3, -5);
     this.scene.add(light);
-    this.scene.add(new THREE.AmbientLight(0x777777, 4));
+    this.scene.add(new THREE.AmbientLight(0x777777));
 
     // Skybox
     this.cubeMap = new THREE.CubeTexture([]);
@@ -124,7 +120,7 @@ class Game extends Component {
     this.scene.add(skyBox);
 
     // Sphere
-    const icosahedronGeometry = new THREE.IcosahedronGeometry(300, 3);
+    const icosahedronGeometry = new THREE.IcosahedronGeometry(200, 3);
 
     for (let i = 0, j = icosahedronGeometry.faces.length; i < j; i++) {
       icosahedronGeometry.faces[i].color.setHex(Math.random() * 0xffffff);
@@ -186,27 +182,36 @@ class Game extends Component {
     // gateL1.rotation.x = Math.PI / 2;
     // this.scene.add(gateL1);
     
-    // monteriggioniObj 
-    // monteriggioniMaterial
-    // const onProgress = (xhr) => {
-    //   if (xhr.lengthComputable) {
-    //     console.log( Math.round(xhr.loaded / xhr.total * 100, 2) + '% downloaded' );
-    //   }
-    // };
-    // const onError = (xhr) => { console.log(xhr) };
-    // const mtlLoader = new this.THREE.MTLLoader();
-    // mtlLoader.setBaseUrl( process.env.PUBLIC_URL + 'obj/' );
-    // mtlLoader.setPath( process.env.PUBLIC_URL + 'obj/' );
-    // mtlLoader.load(monteriggioniMaterial, (materials) => {
-    //   materials.preload();
-    //   const objLoader = new this.THREE.OBJLoader();
-    //   objLoader.setMaterials(materials);
-    //   objLoader.load(monteriggioniObj, (object) => {
-    //     object.position.z = -595;
-    //     object.scale.set(100,100,100);
-    //     this.scene.add(object);
-    //   }, onProgress, onError);
-    // });
+    const onProgress = (xhr) => {
+      if (xhr.lengthComputable) {
+        console.log( Math.round(xhr.loaded / xhr.total * 100, 2) + '% downloaded' );
+      }
+    };
+    const onError = (xhr) => { console.log(xhr) };
+    const mtlLoader = new MTLLoader();
+    mtlLoader.setTexturePath( process.env.PUBLIC_URL + '../textures/'); // temp fix for console
+    mtlLoader.load(shipMtl, (materials) => {
+      materials.preload();
+      const objLoader = new OBJLoader();
+      objLoader.setMaterials(materials);
+      objLoader.load(shipObj, (object) => {
+        object.traverse((child) => {
+          if (child instanceof THREE.Mesh){
+               if (child.material.name === 'emissive') return;
+               for (let i = 0; i < shipTextures.length; i++) {
+                child.material[i].map = new THREE.TextureLoader().load(shipTextures[i]);
+               }               
+           }
+        });
+        object.position.y = -1220;
+        object.position.z = -1400;
+        object.rotation.y = -Math.PI;
+        object.scale.set(400, 400, 400);
+        // object.rotation.x = -Math.PI / 3;
+        // object.rotation.z = -Math.PI / 5;
+        this.scene.add(object);
+      }, onProgress, onError);
+    });
      //
     window.addEventListener('resize', this.onWindowResize, false);
   };
@@ -224,7 +229,7 @@ class Game extends Component {
     this.world.defaultContactMaterial.contactEquationRegularizationTime = 10;
 
     // Create a sphere
-    const radius = 300; // m
+    const radius = 200; // m
     this.sphereBody = new CANNON.Body({
       mass: 1, // kg
       position: new CANNON.Vec3(0, 500, -4500), // m
@@ -235,8 +240,8 @@ class Game extends Component {
     this.world.addBody(this.sphereBody);
 
     // Add an initial impulse to the front
-    this.frontPoint = new CANNON.Vec3(0, 0, -4000);
-    this.initialForce = new CANNON.Vec3(0, -50000, 0);
+    this.frontPoint = new CANNON.Vec3(0, 0, -4300);
+    this.initialForce = new CANNON.Vec3(0, -40000, 0);
     this.sphereBody.applyForce(this.initialForce, this.frontPoint);
 
     // Create a hidden ground
@@ -391,9 +396,9 @@ class Game extends Component {
     // sphere.position.y = Math.sin( time ) * 500 + 250;
     // sphere.rotation.x = time * 0.5;
     // this.camera.lookAt(this.sphere.position);
-    // this.camera.position.z = this.sphere.position.z - 3500;
+    // this.camera.position.z = this.sphere.position.z - 2000;
     // this.camera.position.x = this.sphere.position.x;
-    // this.camera.position.y = this.sphere.position.y + 750;
+    // this.camera.position.y = this.sphere.position.y + 450;
 
     this.delta = Date.now() - this.time;
     this.renderer.render(this.scene, this.camera);
