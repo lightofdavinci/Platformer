@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import '../styles/CreateAccount.css';
+import '../styles/Form.css';
 
 class Register extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class Register extends Component {
       <div className="outer">
         <div className="middle">
           <div className="inner">
-            <form className="register-form" onSubmit={this.handleSubmit}>
+            <form className="form" onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label>Username:</label>
                 <input
@@ -38,14 +38,6 @@ class Register extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Email:</label>
-                <input
-                  className="form-field"
-                  type="text"
-                  placeholder="email address"
-                />
-              </div>
-              <div className="form-group">
                 <label>Password:</label>
                 <input
                   className="form-field"
@@ -53,7 +45,7 @@ class Register extends Component {
                   placeholder="password"
                 />
               </div>
-              <input className="form-btn" type="submit" value="SUBMIT" />
+              <input className="form-btn" type="submit" value="CREATE" />
               <p className="form-toggle">
                 Have an account ? <Link to="/login">Login</Link>
               </p>

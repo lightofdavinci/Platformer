@@ -26,7 +26,7 @@ class Leaderboard extends Component {
                 <div className="Leaderboard-id">
                   <img
                     id="identicon"
-                    src={identicons.generateSVGDataURIString(player.email, {
+                    src={identicons.generateSVGDataURIString(player.username, {
                       width: 28,
                       size: 5
                     })}

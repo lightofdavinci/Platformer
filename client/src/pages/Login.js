@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import '../styles/Login.css';
-
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -26,13 +24,13 @@ class Login extends Component {
       <div className="outer">
         <div className="middle">
           <div className="inner">
-            <form className="login-form" onSubmit={this.handleSubmit}>
+            <form className="form" onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <label>Email:</label>
+                <label>Username:</label>
                 <input
                   className="form-field"
                   type="text"
-                  placeholder="email address"
+                  placeholder="username"
                 />
               </div>
               <div className="form-group">
@@ -43,7 +41,7 @@ class Login extends Component {
                   placeholder="password"
                 />
               </div>
-              <input className="form-btn" type="submit" value="SUBMIT" />
+              <input className="form-btn" type="submit" value="LOGIN" />
               <p className="form-toggle">
                 Do not have an account ? <Link to="/register">Sign Up</Link>
               </p>
