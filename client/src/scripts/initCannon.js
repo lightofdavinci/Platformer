@@ -7,6 +7,10 @@ export default (context) => {
   context.dt = 1 / 60; // timeStep
   context.inputVelocity = new THREE.Vector3();
 
+  // For the mass calculation
+  // const density = 2515; // kg/m^3
+  // const mass = density * shape.volume(); // M=p*V
+
   // Setup our world
   context.world = new CANNON.World();
   context.world.gravity.set(0, -800, 0); // -9.82 m/s²
