@@ -1,7 +1,7 @@
 const User = require('../models/userModels');
 const bcrypt = require('bcrypt');
 
-const sendUserError = require('../errors').sendUserError;
+const { sendUserError } = require('../errors');
 
 const BCRYPT_COST = 11;
 

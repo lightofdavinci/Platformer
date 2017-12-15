@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 const User = require('../models/userModels');
 
-const sendUserError = require('../errors').sendUserError;
+const { sendUserError } = require('../errors');
 
 const loginUser = (req, res) => {
   const { username, password } = req.body;
@@ -26,13 +26,16 @@ const loginUser = (req, res) => {
         res.json({ success: true });
       })
       .catch((error) => {
-        return sendUserError('some message here', res);
+        return sendUserError(error, res);
       });
   });
 };
 
 const createUser = (req, res) => {
   const { username } = req.body;
+  if (!username) {
+    return sendUserError('Username is required', res);
+  }
   const passwordHash = req.password;
   const newUser = new User({ username, passwordHash });
   newUser.save((err, savedUser) => {

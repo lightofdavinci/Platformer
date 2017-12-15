@@ -29,7 +29,7 @@ const corsOptions = {
 };
 server.use(cors(corsOptions));
 
-const routes = require('./api/routes/routes');
+const routes = require('./api/routes');
 routes(server);
 
 const port = process.env.PORT || 5000;
