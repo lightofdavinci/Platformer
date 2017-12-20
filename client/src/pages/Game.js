@@ -22,13 +22,16 @@ class Game extends Component {
   componentDidMount() {
     initThree(this);
     initCannon(this);
+    console.log(this.tirex, this.tirexMesh, this.sphere)
     this.animate();
   }
 
   animate = () => {
     requestAnimationFrame(this.animate);
-    this.updatePhysics();
-    this.renderGame();
+    if (this.tirex) {      
+      this.updatePhysics();
+      this.renderGame();
+    }
   };
 
   updatePhysics = () => {
@@ -37,17 +40,17 @@ class Game extends Component {
     this.inputVelocity.set(0, 0, 0);
 
     if (this.moveForward) {
-      this.inputVelocity.z = 22 * this.delta;
+      this.inputVelocity.z = -0.1 * this.delta;
     }
     if (this.moveBackward) {
-      this.inputVelocity.z = -22 * this.delta;
+      this.inputVelocity.z = 0.1 * this.delta;
     }
 
     if (this.moveLeft) {
-      this.inputVelocity.x = 22 * this.delta;
+      this.inputVelocity.x = -0.1 * this.delta;
     }
     if (this.moveRight) {
-      this.inputVelocity.x = -22 * this.delta;
+      this.inputVelocity.x = 0.1 * this.delta;
     }
 
     // Add to the object
@@ -59,17 +62,17 @@ class Game extends Component {
 
     // Copy coordinates from Cannon.js to Three.js
     this.sphere.position.copy(this.sphereBody.position);
-    this.sphere.quaternion.copy(this.sphereBody.quaternion);
+    this.sphere.quaternion.copy(this.sphereBody.quaternion);    
   };
 
   renderGame = () => {
     // var time = performance.now() * 0.001;
     // sphere.position.y = Math.sin( time ) * 500 + 250;
     // sphere.rotation.x = time * 0.5;
-    this.camera.lookAt(this.sphere.position);
-    this.camera.position.z = this.sphere.position.z - 2000;
-    this.camera.position.x = this.sphere.position.x;
-    this.camera.position.y = this.sphere.position.y + 450;
+    // this.camera.lookAt(this.sphere.position);
+    // this.camera.position.z = this.sphere.position.z - 2000;
+    // this.camera.position.x = this.sphere.position.x;
+    // this.camera.position.y = this.sphere.position.y + 450;
 
     this.delta = Date.now() - this.time;
     this.renderer.render(this.scene, this.camera);

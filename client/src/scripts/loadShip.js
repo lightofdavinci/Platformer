@@ -30,12 +30,6 @@ export default (context) => {
               }               
           }
       });
-      object.position.y = -1220;
-      object.position.z = -1400;
-      object.rotation.y = -Math.PI;
-      object.scale.set(400, 400, 400);
-      // object.rotation.x = -Math.PI / 3;
-      // object.rotation.z = -Math.PI / 5;
       context.scene.add(object);
     }, onProgress, onError);
   });

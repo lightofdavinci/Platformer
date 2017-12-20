@@ -16,7 +16,8 @@
     "three": "^0.87.1",
     "three-orbitcontrols": "^1.2.1",
     "three-react-mtl-loader": "^1.0.3",
-    "three-react-obj-loader": "^1.0.4"
+    "three-react-obj-loader": "^1.0.4",
+    "three-to-cannon": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
