@@ -9,7 +9,7 @@ const Cellphone = props => {
       <div className="Cellphone-body">
         <div className="Cellphone-camera" />
         <div className="Cellphone-screen">
-          <Link className="Cellphone-screen-btn" to="/login">
+          <Link className="Cellphone-screen-btn" to="/game">
             {' '}
             PLAY{' '}
           </Link>
