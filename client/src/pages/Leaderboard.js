@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import identicons from 'identicons';
+import identicons from '../scripts/identicons';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
