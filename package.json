@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": ">=6.11.x"
+  },
   "lint-staged": {
     "client/src/**/*.{js,jsx,json,css}": [
       "prettier --single-quote --write",
@@ -12,9 +15,18 @@
   "scripts": {
     "precommit": "lint-staged",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "heroku-postbuild": "cd client/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
-  "author": "",
+  "cacheDirectories": [
+    "node_modules",
+    "client/node_modules"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lightofdavinci/Sphere-Game.git"
+  },
+  "author": "Dan Volosnikov",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^1.0.3",

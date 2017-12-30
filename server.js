@@ -34,6 +34,21 @@ routes(server);
 
 const port = process.env.PORT || 5000;
 
+
+// Priority serve any static files.
+app.use(express.static(path.resolve(__dirname, '../client/public')));
+
+// Answer API requests.
+app.get('/api', function (req, res) {
+  res.set('Content-Type', 'application/json');
+  res.send('{"message":"Hello from the custom server!"}');
+});
+
+// All remaining requests return the React app, so it can handle routing.
+app.get('*', function(request, response) {
+  response.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
+});
+
 server.listen(port, () => {
   console.log(`Server up and running on ${port}`);
 });
