@@ -15,7 +15,6 @@
     "redux-promise": "^0.5.3",
     "three": "^0.87.1",
     "three-orbitcontrols": "^1.2.1",
-    "three-react-mtl-loader": "^1.0.3",
     "three-react-obj-loader": "^1.0.4",
     "three-to-cannon": "^1.1.2"
   },
