@@ -1,7 +1,8 @@
 import * as THREE from 'three';
 
 import OBJLoader from "three-react-obj-loader";
-import MTLLoader from "three-react-mtl-loader";
+// it couldn't minify es6 script of mtl loader, therefore 
+import MTLLoader from "./esfMtlLoader";
 
 // Tiki Treasure!(https://sketchfab.com/models/cbcf188a01f54d63a10f10c227c5a6ff) by glenatron(https://sketchfab.com/glenatron) is licensed under CC Attribution(http://creativecommons.org/licenses/by/4.0/)
 import shipObj from '../obj/pirate.obj';
