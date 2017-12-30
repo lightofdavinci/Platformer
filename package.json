@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "engines": {
-    "node": ">=6.11.x"
+    "node": "6.11.x"
   },
   "lint-staged": {
     "client/src/**/*.{js,jsx,json,css}": [
