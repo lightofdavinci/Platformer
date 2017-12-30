@@ -37,7 +37,7 @@ const port = process.env.PORT || 5000;
 
 
 // Priority serve any static files.
-server.use(express.static(path.resolve(__dirname, '../client/build')));
+server.use(express.static(path.resolve(__dirname, './client/build')));
 
 // Answer API requests.
 server.get('/api', function (req, res) {
