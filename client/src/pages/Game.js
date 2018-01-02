@@ -22,13 +22,12 @@ class Game extends Component {
   componentDidMount() {
     initThree(this);
     initCannon(this);
-    console.log(this.tirex, this.tirexMesh, this.sphere)
     this.animate();
   }
 
   animate = () => {
     requestAnimationFrame(this.animate);
-    if (this.tirex) {      
+    if (this.tirex) {
       this.updatePhysics();
       this.renderGame();
     }
@@ -62,7 +61,7 @@ class Game extends Component {
 
     // Copy coordinates from Cannon.js to Three.js
     this.sphere.position.copy(this.sphereBody.position);
-    this.sphere.quaternion.copy(this.sphereBody.quaternion);    
+    this.sphere.quaternion.copy(this.sphereBody.quaternion);
   };
 
   renderGame = () => {

@@ -1,5 +1,3 @@
-'use strict';
-
 // Simple hash function
 // see http://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
 function hashCode(s) {
@@ -13,7 +11,7 @@ function hashCode(s) {
   return value;
 }
 
-exports.generate = function (id, options, generator) {
+exports.generate = function(id, options, generator) {
   var size = options.size;
   var hash = options.hash || hashCode;
   var value = hash(id);
@@ -31,21 +29,41 @@ exports.generate = function (id, options, generator) {
   generator.end();
 };
 
-exports.generateSVGString = function (id, options) {
+exports.generateSVGString = function(id, options) {
   var width = options.width;
   var size = options.size;
   var side = width / (size * 2 - 1);
   var color;
-  var str = '<svg xmlns="http://www.w3.org/2000/svg" width="' + width + '" height="' + width + '">';
+  var str =
+    '<svg xmlns="http://www.w3.org/2000/svg" width="' +
+    width +
+    '" height="' +
+    width +
+    '">';
   exports.generate(id, options, {
     start: function start(value) {
-      color = '#' + Math.abs(value).toString(16).substring(0, 6);
+      color =
+        '#' +
+        Math.abs(value)
+          .toString(16)
+          .substring(0, 6);
     },
     rect: function rect(x, y) {
       x = Math.floor(x * side);
       y = Math.floor(y * side);
       var xside = side + 1;
-      str += '<rect x="' + x + '" y="' + y + '" width="' + xside + '" height="' + xside + '" style="fill:' + color + '" />';
+      str +=
+        '<rect x="' +
+        x +
+        '" y="' +
+        y +
+        '" width="' +
+        xside +
+        '" height="' +
+        xside +
+        '" style="fill:' +
+        color +
+        '" />';
     },
     end: function end() {
       str += '</svg>';
@@ -54,16 +72,19 @@ exports.generateSVGString = function (id, options) {
   return str;
 };
 
-var base64 = typeof window !== 'undefined' ? window.btoa : function (str) {
-  return new global['Buffer'](str).toString('base64');
-};
+var base64 =
+  typeof window !== 'undefined'
+    ? window.btoa
+    : function(str) {
+        return new global['Buffer'](str).toString('base64');
+      };
 
-exports.generateSVGDataURIString = function (id, options) {
+exports.generateSVGDataURIString = function(id, options) {
   var str = exports.generateSVGString(id, options);
   return 'data:image/svg+xml;base64,' + base64(str);
 };
 
-exports.generateSVGDOM = function (id, options) {
+exports.generateSVGDOM = function(id, options) {
   var width = options.width;
   var size = options.size;
   var side = width / (size * 2 - 1);
@@ -74,7 +95,11 @@ exports.generateSVGDOM = function (id, options) {
   svg.setAttribute('height', String(width));
   exports.generate(id, options, {
     start: function start(value) {
-      color = '#' + Math.abs(value).toString(16).substring(0, 6);
+      color =
+        '#' +
+        Math.abs(value)
+          .toString(16)
+          .substring(0, 6);
     },
     rect: function rect(x, y) {
       var rect = document.createElementNS(xmlns, 'rect');
