@@ -4,10 +4,8 @@ import mesh2shape from 'three-to-cannon';
 
 import { onKeyDown, onKeyUp } from './onKeyPress.js';
 
-///---------> remove
 import OBJLoader from 'three-react-obj-loader';
-import testObj from '../obj/reducedPirate.obj';
-///---------> remove
+import reducedShip from '../obj/reducedPirate.obj';
 
 export default context => {
   context.dt = 1 / 60; // timeStep
@@ -72,7 +70,7 @@ export default context => {
   });
   context.world.addBody(platform1);
 
-  //////test//////////---->>>>>>
+  // Create a solid ship hull
   const onProgress = xhr => {
     if (xhr.lengthComputable) {
       // console.log( Math.round(xhr.loaded / xhr.total * 100, 2) + '% downloaded' );
@@ -84,21 +82,13 @@ export default context => {
   const objLoader = new OBJLoader();
 
   objLoader.load(
-    testObj,
+    reducedShip,
     object => {
-      // context.tirexMesh = object;
-      // context.tirexMesh.scale.set(100,100,100);
-      context.tirex = new CANNON.Body({
+      context.shipBody = new CANNON.Body({
         mass: 0,
         shape: mesh2shape(object, { type: mesh2shape.Type.MESH })
       });
-      context.tirex.boundingRadius = 200;
-      context.tirex.aabb.lowerBound = new CANNON.Vec3(-200, 300, -4700);
-      context.tirex.aabb.upperBound = new CANNON.Vec3(200, 700, -4300);
-      context.world.addBody(context.tirex);
-      // context.scene.add(context.tirexMesh);
-      // this.tirexMesh.position.copy(this.tirex.position);
-      // this.tirexMesh.quaternion.copy(this.tirex.quaternion);
+      context.world.addBody(context.shipBody);
     },
     onProgress,
     onError

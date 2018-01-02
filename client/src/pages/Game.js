@@ -27,7 +27,7 @@ class Game extends Component {
 
   animate = () => {
     requestAnimationFrame(this.animate);
-    if (this.tirex) {
+    if (this.shipBody) {
       this.updatePhysics();
       this.renderGame();
     }
@@ -65,9 +65,6 @@ class Game extends Component {
   };
 
   renderGame = () => {
-    // var time = performance.now() * 0.001;
-    // sphere.position.y = Math.sin( time ) * 500 + 250;
-    // sphere.rotation.x = time * 0.5;
     // this.camera.lookAt(this.sphere.position);
     // this.camera.position.z = this.sphere.position.z - 2000;
     // this.camera.position.x = this.sphere.position.x;
