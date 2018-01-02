@@ -5,12 +5,11 @@ import mesh2shape from 'three-to-cannon';
 import { onKeyDown, onKeyUp } from './onKeyPress.js';
 
 ///---------> remove
-import OBJLoader from "three-react-obj-loader";
+import OBJLoader from 'three-react-obj-loader';
 import testObj from '../obj/reducedPirate.obj';
 ///---------> remove
 
-
-export default (context) => {
+export default context => {
   context.dt = 1 / 60; // timeStep
   context.inputVelocity = new THREE.Vector3();
 
@@ -73,22 +72,25 @@ export default (context) => {
   });
   context.world.addBody(platform1);
 
-  
   //////test//////////---->>>>>>
-  const onProgress = (xhr) => {
+  const onProgress = xhr => {
     if (xhr.lengthComputable) {
-      console.log( Math.round(xhr.loaded / xhr.total * 100, 2) + '% downloaded' );
+      // console.log( Math.round(xhr.loaded / xhr.total * 100, 2) + '% downloaded' );
     }
   };
-  const onError = (xhr) => { console.log(xhr) };
-    const objLoader = new OBJLoader();
+  const onError = xhr => {
+    console.log(xhr);
+  };
+  const objLoader = new OBJLoader();
 
-    objLoader.load(testObj, (object) => {
+  objLoader.load(
+    testObj,
+    object => {
       // context.tirexMesh = object;
       // context.tirexMesh.scale.set(100,100,100);
       context.tirex = new CANNON.Body({
         mass: 0,
-        shape: mesh2shape(object, {type: mesh2shape.Type.MESH})
+        shape: mesh2shape(object, { type: mesh2shape.Type.MESH })
       });
       context.tirex.boundingRadius = 200;
       context.tirex.aabb.lowerBound = new CANNON.Vec3(-200, 300, -4700);
@@ -97,12 +99,26 @@ export default (context) => {
       // context.scene.add(context.tirexMesh);
       // this.tirexMesh.position.copy(this.tirex.position);
       // this.tirexMesh.quaternion.copy(this.tirex.quaternion);
-    }, onProgress, onError);
-
+    },
+    onProgress,
+    onError
+  );
 
   // Handling a key press
-  document.addEventListener('keydown', (e) => { onKeyDown(e, context); }, false);
-  document.addEventListener('keyup', (e) => { onKeyUp(e, context); }, false);
+  document.addEventListener(
+    'keydown',
+    e => {
+      onKeyDown(e, context);
+    },
+    false
+  );
+  document.addEventListener(
+    'keyup',
+    e => {
+      onKeyUp(e, context);
+    },
+    false
+  );
 
   // Start the timer
   context.setState({ startTimer: true });

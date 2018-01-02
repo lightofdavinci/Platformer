@@ -12,7 +12,7 @@ import { shipTextures } from '../textures/shipTextures.js';
 export default context => {
   const onProgress = xhr => {
     if (xhr.lengthComputable) {
-      console.log(Math.round(xhr.loaded / xhr.total * 100, 2) + '% downloaded');
+      // console.log(Math.round(xhr.loaded / xhr.total * 100, 2) + '% downloaded');
     }
   };
   const onError = xhr => {
