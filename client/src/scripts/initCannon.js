@@ -10,7 +10,6 @@ import reducedShip from '../obj/reducedPirate.obj';
 export default context => {
   context.dt = 1 / 60; // timeStep
   context.inputVelocity = new THREE.Vector3();
-
   // For the mass calculation
   // const density = 2515; // kg/m^3
   // const mass = density * shape.volume(); // M=p*V
@@ -34,10 +33,16 @@ export default context => {
   context.sphereBody.linearDamping = context.sphereBody.angularDamping = 0.4;
   context.world.addBody(context.sphereBody);
 
+  // Jump on collision
+  context.canJump = false;
+  context.sphereBody.addEventListener('collide', e => {
+    context.canJump = true;
+  });
+
   // Add an initial impulse to the front
-  // context.frontPoint = new CANNON.Vec3(0, 0, -4300);
-  // context.initialForce = new CANNON.Vec3(0, -40000, 0);
-  // context.sphereBody.applyForce(context.initialForce, context.frontPoint);
+  context.frontPoint = new CANNON.Vec3(0, 0, -2);
+  context.initialForce = new CANNON.Vec3(0, -10, 0);
+  context.sphereBody.applyForce(context.initialForce, context.frontPoint);
 
   // Create a hidden ground
   context.groundBody = new CANNON.Body({
@@ -57,7 +62,7 @@ export default context => {
     context.sphereBody.angularVelocity.set(0, 0, 0);
     context.sphereBody.position.set(0, 5, 15);
     context.sphereBody.quaternion.copy(new THREE.Quaternion());
-    // context.sphereBody.applyForce(context.initialForce, context.frontPoint);
+    context.sphereBody.applyForce(context.initialForce, context.frontPoint);
   });
 
   context.world.addBody(context.groundBody);

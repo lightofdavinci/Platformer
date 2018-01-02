@@ -12,10 +12,16 @@ export const onKeyDown = (e, context) => {
     case 39: // right
       context.moveRight = true;
       break;
+    case 32: // space
+      if (context.canJump) {
+        context.velocity.y = 7;
+      }
+      context.canJump = false;
+      break;
     default:
       break;
   }
-}
+};
 
 export const onKeyUp = (e, context) => {
   switch (e.keyCode) {
@@ -34,4 +40,4 @@ export const onKeyUp = (e, context) => {
     default:
       break;
   }
-}
+};
