@@ -10,7 +10,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd Bits_Bobs.png
 
 newmtl building_mats
 Ns 19.607843
@@ -21,7 +20,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd Building_Mats.png
 
 newmtl emissive
 Ns 19.607843
@@ -32,7 +30,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd Emissive.tga
 
 newmtl foliage
 Ns 19.607843
@@ -43,7 +40,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd Foliage.png
 
 newmtl foliage_02
 Ns 19.607843
@@ -54,7 +50,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd Foliage_02.png
 
 newmtl rock_tile
 Ns 19.607843
@@ -65,7 +60,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd Rock_Tile.png
 
 newmtl rocks_unique
 Ns 19.607843
@@ -76,7 +70,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd Rocks_Unique.png
 
 newmtl rug
 Ns 19.607843
@@ -87,7 +80,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd Rug.tga
 
 newmtl sails
 Ns 19.607843
@@ -98,8 +90,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 0.000000
 illum 1
-map_Kd Sails.png
-map_d Sails.png
 
 newmtl sand_caustics
 Ns 19.607843
@@ -110,7 +100,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd Sand_Tile_Caustics.tga
 
 newmtl sand_tile
 Ns 19.607843
@@ -121,7 +110,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd Sand_Tile.png
 
 newmtl water_light
 Ns 19.607843
@@ -132,7 +120,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd Water.tga
 
 newmtl wood_painted
 Ns 19.607843
@@ -143,7 +130,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd Wood_Painted.png
 
 newmtl wood_planks
 Ns 19.607843
@@ -154,7 +140,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd Wood_Planks.png
 
 newmtl wood_trims
 Ns 19.607843
@@ -165,4 +150,3 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd Wood_Trims.png
