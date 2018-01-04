@@ -5,9 +5,9 @@ import OrbitControls from 'three-orbitcontrols';
 import loadSkyBox from '../scripts/skyBox.js';
 import loadShip from '../scripts/loadShip.js';
 
-export default (context) => {
+export default context => {
   context.container = document.getElementById('Game');
-  
+
   // Renderer
   context.renderer = new THREE.WebGLRenderer({ antialias: true });
   context.renderer.setPixelRatio(window.devicePixelRatio);
@@ -27,7 +27,10 @@ export default (context) => {
   context.camera.position.set(0, 13, 30);
 
   // Orbit Controls
-  context.controls = new OrbitControls(context.camera, context.renderer.domElement);
+  context.controls = new OrbitControls(
+    context.camera,
+    context.renderer.domElement
+  );
   context.controls.enablePan = true;
   context.controls.minDistance = 10.0; // 1000
   context.controls.maxDistance = 500.0; // 9000
@@ -38,7 +41,7 @@ export default (context) => {
 
   // Light
   const light = new THREE.DirectionalLight(0xffffbb, 3);
-  light.position.set(-1, 3, -5);
+  light.position.set(-1, 4, 20);
   context.scene.add(light);
   context.scene.add(new THREE.AmbientLight(0x777777));
 
@@ -74,9 +77,13 @@ export default (context) => {
   // const platform1 = new THREE.Mesh(pf1Geometry, pf1Material);
   // context.scene.add(platform1);
 
-  window.addEventListener('resize', () => {
-    context.camera.aspect = window.innerWidth / window.innerHeight;
-    context.camera.updateProjectionMatrix();
-    context.renderer.setSize(window.innerWidth, window.innerHeight);
-  }, false);
-}
+  window.addEventListener(
+    'resize',
+    () => {
+      context.camera.aspect = window.innerWidth / window.innerHeight;
+      context.camera.updateProjectionMatrix();
+      context.renderer.setSize(window.innerWidth, window.innerHeight);
+    },
+    false
+  );
+};
