@@ -46,7 +46,7 @@ export const login = (username, password, history) => {
         history.push('/help');
       })
       .catch(() => {
-        dispatch(authError('Incorrect email/password combo'));
+        dispatch(authError('Incorrect name/password combo'));
       });
   };
 };
