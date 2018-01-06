@@ -1,0 +1,117 @@
+/* .instruction {
+  background-color: #9b8c6b;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+} */
+.instruction h3 {
+  padding-top: 20px;
+}
+
+.instruction-goal-wrapper {
+  background-color: #9b8c6b;
+  box-shadow: inset 0 1px 1px #aaa, 0 2px 20px rgba(0, 0, 0, 0.56);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  width: 300px;
+  height: 170px;
+  position: relative;
+  color: #fedf08;
+  text-align: center;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.instruction-goal-wrapper h3 {
+  margin-top: 0;
+}
+
+.instruction-btn {
+  background-color: #fedf08;
+  font-family: 'OpenSans-ExtraBold', sans-serif;
+  display: block;
+  color: #9b8c6b;
+  margin-top: 20px;
+  padding: 10px 0;
+  font-size: 30px;
+}
+
+.instruction-arrow-keys-wrapper {
+  background-color: #9b8c6b;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 1px #aaa, 0 2px 20px rgba(0, 0, 0, 0.56);
+  width: 300px;
+  height: 200px;
+  position: relative;
+  color: #fedf08;
+  text-align: center;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.arrow-key {
+  position: absolute;
+  width: 50px;
+  height: 35px;
+  border: 3px solid #fedf08;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding-top: 15px;
+}
+
+.arrow-key-up {
+  left: 125px;
+  top: 62px;
+}
+
+.arrow-key-down {
+  left: 125px;
+  top: 122px;
+}
+
+.arrow-key-left {
+  left: 65px;
+  top: 122px;
+}
+
+.arrow-key-right {
+  left: 185px;
+  top: 122px;
+}
+
+.instruction-spacebar-wrapper {
+  background-color: #9b8c6b;
+  box-shadow: inset 0 1px 1px #aaa, 0 2px 20px rgba(0, 0, 0, 0.56);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  width: 300px;
+  height: 145px;
+  position: relative;
+  color: #fedf08;
+  text-align: center;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.instruction-spacebar {
+  border: 3px solid #fedf08;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  width: 170px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.instruction-spacebar h2 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

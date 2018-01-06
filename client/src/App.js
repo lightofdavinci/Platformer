@@ -12,6 +12,7 @@ class App extends Component {
           <Route path="/login" component={Pages.Login} />
           <Route path="/game" component={Pages.Game} />
           <Route path="/leaderboard" component={Pages.Leaderboard} />
+          <Route path="/help" component={Pages.Help} />
           <Route component={Pages.NotFound} />
         </Switch>
       </div>
