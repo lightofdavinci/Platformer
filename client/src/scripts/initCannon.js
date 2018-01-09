@@ -67,13 +67,24 @@ export default context => {
 
   context.world.addBody(context.groundBody);
 
-  // Create a platform 1
-  const platform1 = new CANNON.Body({
+  // Create a floor of the ship mesh
+  const platform = new CANNON.Body({
     mass: 0,
     position: new CANNON.Vec3(0, -0.4, 0),
     shape: new CANNON.Box(new CANNON.Vec3(15, 1, 15))
   });
-  context.world.addBody(platform1);
+  context.world.addBody(platform);
+
+  // Create a flag
+  const flag = new CANNON.Body({
+    mass: 0,
+    position: new CANNON.Vec3(-6, 14, 2.2),
+    shape: new CANNON.Box(new CANNON.Vec3(0.5, 0.5, 0.5))
+  });
+  context.world.addBody(flag);
+  flag.addEventListener('collide', e => {
+    console.log('here I will make a post request');
+  });
 
   // Create a solid ship hull
   const onProgress = xhr => {

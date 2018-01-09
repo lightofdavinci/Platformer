@@ -27,10 +27,8 @@ class Game extends Component {
 
   animate = () => {
     requestAnimationFrame(this.animate);
-    if (this.shipBody) {
-      this.updatePhysics();
-      this.renderGame();
-    }
+    this.updatePhysics();
+    this.renderGame();
   };
 
   updatePhysics = () => {

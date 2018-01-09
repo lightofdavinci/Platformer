@@ -67,16 +67,19 @@ export default context => {
   context.sphere = new THREE.Mesh(icosahedronGeometry, icosahedronMaterial);
   context.scene.add(context.sphere);
 
-  // Platform 1
-  // const pf1Geometry = new THREE.BoxGeometry(30, 1, 30);
-  // const pf1Material = new THREE.MeshPhongMaterial({
-  //   color: 0x00ff00,
-  //   shininess: 100,
-  //   envMap: context.cubeMap
-  // });
-  // const platform1 = new THREE.Mesh(pf1Geometry, pf1Material);
-  // context.scene.add(platform1);
+  // Flag
+  const flagGeometry = new THREE.BoxGeometry(1, 1, 1);
+  const flagMaterial = new THREE.MeshPhongMaterial({
+    color: 0x00ff00,
+    shininess: 100,
+    envMap: context.cubeMap
+  });
+  const flag = new THREE.Mesh(flagGeometry, flagMaterial);
+  flag.position.set(-6, 14, 2.2);
+  flag.rotateX(4);
+  context.scene.add(flag);
 
+  // Resize
   window.addEventListener(
     'resize',
     () => {
