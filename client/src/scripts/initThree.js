@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import OrbitControls from 'three-orbitcontrols';
 
 import loadSkyBox from '../scripts/skyBox.js';
-import loadShip from '../scripts/loadShip.js';
+import { loadShip } from '../scripts/loadShip.js';
 
 export default context => {
   context.container = document.getElementById('Game');

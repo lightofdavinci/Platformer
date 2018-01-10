@@ -1,11 +1,8 @@
 import * as THREE from 'three';
 import * as CANNON from 'cannon';
-import mesh2shape from 'three-to-cannon';
 
 import { onKeyDown, onKeyUp } from './onKeyPress.js';
-
-import OBJLoader from 'three-react-obj-loader';
-import reducedShip from '../obj/reducedPirate.obj';
+import { loadShipBody } from '../scripts/loadShip.js';
 
 export default context => {
   context.dt = 1 / 60; // timeStep
@@ -87,28 +84,7 @@ export default context => {
   });
 
   // Create a solid ship hull
-  const onProgress = xhr => {
-    if (xhr.lengthComputable) {
-      // console.log( Math.round(xhr.loaded / xhr.total * 100, 2) + '% downloaded' );
-    }
-  };
-  const onError = xhr => {
-    console.log(xhr);
-  };
-  const objLoader = new OBJLoader();
-
-  objLoader.load(
-    reducedShip,
-    object => {
-      context.shipBody = new CANNON.Body({
-        mass: 0,
-        shape: mesh2shape(object, { type: mesh2shape.Type.MESH })
-      });
-      context.world.addBody(context.shipBody);
-    },
-    onProgress,
-    onError
-  );
+  loadShipBody(context);
 
   // Handling a key press
   document.addEventListener(

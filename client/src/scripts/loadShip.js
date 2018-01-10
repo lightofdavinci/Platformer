@@ -1,15 +1,18 @@
 import * as THREE from 'three';
+import * as CANNON from 'cannon';
 
 import OBJLoader from 'three-react-obj-loader';
 // it couldn't minify es6 script of mtl loader, therefore
 import MTLLoader from './esfMtlLoader';
+import mesh2shape from 'three-to-cannon';
 
 // Tiki Treasure!(https://sketchfab.com/models/cbcf188a01f54d63a10f10c227c5a6ff) by glenatron(https://sketchfab.com/glenatron) is licensed under CC Attribution(http://creativecommons.org/licenses/by/4.0/)
 import shipObj from '../obj/pirate.obj';
 import shipMtl from '../obj/pirate.mtl';
 import { shipTextures } from '../textures/shipTextures.js';
+import reducedShip from '../obj/reducedPirate.obj';
 
-export default context => {
+export const loadShip = context => {
   const onProgress = xhr => {
     if (xhr.lengthComputable) {
       // console.log(Math.round(xhr.loaded / xhr.total * 100, 2) + '% downloaded');
@@ -43,4 +46,29 @@ export default context => {
       onError
     );
   });
+};
+
+export const loadShipBody = context => {
+  const onProgress = xhr => {
+    if (xhr.lengthComputable) {
+      // console.log( Math.round(xhr.loaded / xhr.total * 100, 2) + '% downloaded' );
+    }
+  };
+  const onError = xhr => {
+    console.log(xhr);
+  };
+  const objLoader = new OBJLoader();
+
+  objLoader.load(
+    reducedShip,
+    object => {
+      context.shipBody = new CANNON.Body({
+        mass: 0,
+        shape: mesh2shape(object, { type: mesh2shape.Type.MESH })
+      });
+      context.world.addBody(context.shipBody);
+    },
+    onProgress,
+    onError
+  );
 };
