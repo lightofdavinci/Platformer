@@ -11,4 +11,13 @@ module.exports = (app) => {
   app
     .route('/logout')
     .post(userControllers.logout);
+  app
+    .route('/users')
+    .get(userControllers.getAllUsers);
+  app
+    .route('/users')
+    .delete(userControllers.removeAllUsers);
+  app
+    .route('/stats')
+    .put(userControllers.updateUserStats);
 };

@@ -33,97 +33,16 @@ server.use(cors(corsOptions));
 const routes = require('./api/routes');
 routes(server);
 
-const port = process.env.PORT || 5000;
-
-
 // Priority serve any static files.
 server.use(express.static(path.resolve(__dirname, './client/build')));
 
-// Answer API requests.
-server.get('/api', function (req, res) {
-  res.set('Content-Type', 'application/json');
-  res.send('{"message":"Hello from the custom server!"}');
+// All requests return the React app, so it can handle routing.
+server.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 });
 
-// All remaining requests return the React app, so it can handle routing.
-server.get('*', function(request, response) {
-  response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-});
+const port = process.env.PORT || 5000;
 
 server.listen(port, () => {
   console.log(`Server up and running on ${port}`);
 });
-
-// // dummy data
-// const stats = [
-//   {
-//     username: 'Paul',
-//     email: 'username@example.com',
-//     rank: 1,
-//     time: '02 : 45'
-//   },
-//   {
-//     username: 'Ben',
-//     email: 'ben@example.com',
-//     rank: 2,
-//     time: '06 : 35'
-//   },
-//   {
-//     username: 'Alex',
-//     email: 'alex@example.com',
-//     rank: 3,
-//     time: '08 : 35'
-//   },
-//   {
-//     username: 'Sean',
-//     email: 'sean@example.com',
-//     rank: 4,
-//     time: '09 : 15'
-//   },
-//   {
-//     username: 'John',
-//     email: 'john@example.com',
-//     rank: 5,
-//     time: '11 : 11'
-//   },
-//   {
-//     username: 'Brian',
-//     email: 'brian@example.com',
-//     rank: 6,
-//     time: '11 : 41'
-//   },
-//   {
-//     username: 'Dan',
-//     email: 'dan@example.com',
-//     rank: 7,
-//     time: '11 : 48'
-//   },
-//   {
-//     username: 'Kate',
-//     email: 'kate@example.com',
-//     rank: 8,
-//     time: '11 : 58'
-//   },
-//   {
-//     username: 'Maria',
-//     email: 'maria@example.com',
-//     rank: 9,
-//     time: '12 : 48'
-//   },
-//   {
-//     username: 'Julio',
-//     email: 'julio@example.com',
-//     rank: 10,
-//     time: '12 : 49'
-//   },
-//   {
-//     username: 'Lucy',
-//     email: 'lucy@example.com',
-//     rank: 11,
-//     time: '13 : 19'
-//   }
-// ];
-
-// server.get('/stats', (req, res) => {
-//   res.status(200).json(stats);
-// });

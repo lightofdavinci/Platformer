@@ -57,18 +57,45 @@ const logout = (req, res) => {
   res.json({ success: true });
 };
 
-// server.get('/restricted/users', (req, res) => {
-//   User.find({}, (err, users) => {
-//     if (err) {
-//       middleWare.sendUserError('500', res);
-//       return;
-//     }
-//     res.json(users);
-//   });
-// });
+const getAllUsers  = (req, res) => {
+  User.find({}, (err, users) => {
+    if (err) {
+      middleWare.sendUserError('500', res);
+      return;
+    }
+    res.json(users);
+  });
+};
+
+const removeAllUsers  = (req, res) => {
+  User.remove({}, (err, users) => {
+    if (err) {
+      middleWare.sendUserError('500', res);
+      return;
+    }
+    res.json({ status: 'success' });
+  });
+};
+
+const updateUserStats = (req, res) => {
+  const username = req.session.username;
+  if (!username) { return sendUserError('User is not logged in', res); }
+  const { unixTimeStamp, time } = req.body;
+  User.findOne({ username }, (err, user) => {
+    if (err) { return sendUserError('Couldn\'t find user', res); }
+    user.stats = { unixTimeStamp, time };
+    user.save((err, updatedUser) => {
+      if (err) { return sendUserError('Couldn\'t save changes', res); }
+      res.send(updatedUser);
+    });
+  });
+};
 
 module.exports = {
   createUser,
   loginUser,
-  logout
+  logout,
+  getAllUsers,
+  removeAllUsers,
+  updateUserStats
 };
