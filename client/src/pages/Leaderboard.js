@@ -19,10 +19,10 @@ class Leaderboard extends Component {
             <div className="Leaderboard-name">GAMERTAG</div>
             <div className="Leaderboard-time">TIME</div>
           </div>
-          {this.props.stats.map((player, k) => {
+          {this.props.stats.map((player, ind) => {
             return (
-              <div className="Leaderboard-row" key={k + player.username}>
-                <div className="Leaderboard-rank">{player.rank}</div>
+              <div className="Leaderboard-row" key={player._id}>
+                <div className="Leaderboard-rank">{ind + 1}</div>
                 <div className="Leaderboard-id">
                   <img
                     id="identicon"
@@ -34,7 +34,7 @@ class Leaderboard extends Component {
                   />
                 </div>
                 <div className="Leaderboard-name">{player.username}</div>
-                <div className="Leaderboard-time">{player.time}</div>
+                <div className="Leaderboard-time">{player.stats.time}</div>
               </div>
             );
           })}

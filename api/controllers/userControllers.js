@@ -60,8 +60,7 @@ const logout = (req, res) => {
 const getAllUsers  = (req, res) => {
   User.find({}, (err, users) => {
     if (err) {
-      middleWare.sendUserError('500', res);
-      return;
+      return sendUserError('500', res);
     }
     res.json(users);
   });
@@ -70,11 +69,21 @@ const getAllUsers  = (req, res) => {
 const removeAllUsers  = (req, res) => {
   User.remove({}, (err, users) => {
     if (err) {
-      middleWare.sendUserError('500', res);
-      return;
+      return sendUserError('500', res);
     }
     res.json({ status: 'success' });
   });
+};
+
+const getAllStats = (req, res) => {
+  User.find({})
+    .sort('stats.unixTimeStamp')
+    .select("username stats")
+    .exec()
+    .then(stats => {
+      res.json(stats);
+    })
+    .catch(err => sendUserError(err, res));
 };
 
 const updateUserStats = (req, res) => {
@@ -86,7 +95,7 @@ const updateUserStats = (req, res) => {
     user.stats = { unixTimeStamp, time };
     user.save((err, updatedUser) => {
       if (err) { return sendUserError('Couldn\'t save changes', res); }
-      res.send(updatedUser);
+      res.send(updatedUser.stats);
     });
   });
 };
@@ -96,6 +105,7 @@ module.exports = {
   loginUser,
   logout,
   getAllUsers,
+  getAllStats,
   removeAllUsers,
   updateUserStats
 };

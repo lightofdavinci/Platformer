@@ -19,5 +19,8 @@ module.exports = (app) => {
     .delete(userControllers.removeAllUsers);
   app
     .route('/stats')
+    .get(userControllers.getAllStats);
+  app
+    .route('/stats')
     .put(userControllers.updateUserStats);
 };
