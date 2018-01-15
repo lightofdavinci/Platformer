@@ -7,8 +7,10 @@ const cors = require('cors');
 
 const server  = express();
 
+require('dotenv').config();
+
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/game', { useMongoClient: true });
+mongoose.connect(process.env.MONGO_URI, { useMongoClient: true });
 
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
