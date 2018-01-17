@@ -9,7 +9,11 @@ import '../styles/Form.css';
 
 class Register extends Component {
   handleFormSubmit({ username, password }) {
-    this.props.register(username, password, this.props.history);
+    this.props.register(
+      username.replace(/^\s+|\s+$/g, ''),
+      password,
+      this.props.history
+    );
   }
 
   renderAlert = () => {
