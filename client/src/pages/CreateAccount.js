@@ -36,6 +36,7 @@ class Register extends Component {
                   name="username"
                   component="input"
                   type="text"
+                  placeholder="username"
                 />
               </fieldset>
               <fieldset className="form-group">
@@ -45,6 +46,7 @@ class Register extends Component {
                   name="password"
                   component="input"
                   type="password"
+                  placeholder="password"
                 />
               </fieldset>
               <button className="form-btn" action="submit">
