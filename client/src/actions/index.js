@@ -29,7 +29,7 @@ export const register = (username, password, history) => {
         dispatch({
           type: USER_REGISTERED
         });
-        history.push('/help');
+        history.push('/login');
       })
       .catch(() => {
         dispatch(authError('Failed to register user'));
