@@ -71,11 +71,6 @@ class Game extends Component {
   };
 
   renderGame = () => {
-    // this.camera.lookAt(this.sphere.position);
-    // this.camera.position.z = this.sphere.position.z - 2000;
-    // this.camera.position.x = this.sphere.position.x;
-    // this.camera.position.y = this.sphere.position.y + 450;
-
     this.delta = Date.now() - this.time;
     this.renderer.render(this.scene, this.camera);
     this.time = Date.now();
@@ -93,3 +88,9 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
+
+// Chasing camera in 'renderGame'
+// this.camera.lookAt(this.sphere.position);
+// this.camera.position.z = this.sphere.position.z - 2000;
+// this.camera.position.x = this.sphere.position.x;
+// this.camera.position.y = this.sphere.position.y + 450;
