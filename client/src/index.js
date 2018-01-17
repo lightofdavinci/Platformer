@@ -10,7 +10,9 @@ import reducers from './reducers';
 import App from './App';
 import './styles/index.css';
 
-const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(createStore);
+export const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(
+  createStore
+);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>

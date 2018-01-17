@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 import * as CANNON from 'cannon';
 
-import { onKeyDown, onKeyUp } from './onKeyPress.js';
-import { loadShipBody } from '../scripts/loadShip.js';
+import { onKeyDown, onKeyUp } from './onKeyPress';
+import { loadShipBody } from '../scripts/loadShip';
 
 export default context => {
   context.dt = 1 / 60; // timeStep
@@ -79,9 +79,14 @@ export default context => {
     shape: new CANNON.Box(new CANNON.Vec3(0.5, 0.5, 0.5))
   });
   context.world.addBody(flag);
-  flag.addEventListener('collide', e => {
-    console.log('here I will make a post request');
-  });
+  flag.addEventListener(
+    'collide',
+    e => {
+      context.props.updateStats(context.props.time);
+      // context.props.history.push('/leaderboard');
+    },
+    false
+  );
 
   // Create a solid ship hull
   loadShipBody(context);

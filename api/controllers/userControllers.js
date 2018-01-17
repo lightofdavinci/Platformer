@@ -92,6 +92,9 @@ const updateUserStats = (req, res) => {
   const { unixTimeStamp, time } = req.body;
   User.findOne({ username }, (err, user) => {
     if (err) { return sendUserError('Couldn\'t find user', res); }
+    if (user.stats.unixTimeStamp <= unixTimeStamp) {
+      return res.send(user.stats);
+    }
     user.stats = { unixTimeStamp, time };
     user.save((err, updatedUser) => {
       if (err) { return sendUserError('Couldn\'t save changes', res); }

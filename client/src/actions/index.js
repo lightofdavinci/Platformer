@@ -11,6 +11,8 @@ export const USER_UNAUTHENTICATED = 'USER_UNAUTHENTICATED';
 export const AUTHENTICATION_ERROR = 'AUTHENTICATION_ERROR';
 export const CHECK_IF_AUTHENTICATED = 'CHECK_IF_AUTHENTICATED';
 export const GET_STATS = 'GET_STATS';
+export const UPDATE_STATS = 'UPDATE_STATS';
+export const UPDATE_UNIX_TIME = 'UPDATE_UNIX_TIME';
 
 export const authError = error => {
   return {
@@ -79,5 +81,40 @@ export const getStats = () => {
       .catch(() => {
         dispatch(authError('Failed to fetch stats'));
       });
+  };
+};
+
+export const updateStats = time => {
+  const unixTimeStamp = time[1] - time[0];
+  const seconds = Math.floor((unixTimeStamp / 1000) % 60);
+  const minutes = Math.floor((unixTimeStamp / 1000 / 60) % 60);
+  const statsTime =
+    ('0' + minutes).slice(-2) + ' : ' + ('0' + seconds).slice(-2);
+  const statsObj = {
+    unixTimeStamp,
+    time: statsTime
+  };
+  return dispatch => {
+    axios
+      .put(`${ROOT_URL}/stats`, statsObj)
+      .then(response => {
+        console.log(response);
+        dispatch({
+          type: UPDATE_STATS,
+          payload: response.data
+        });
+      })
+      .catch(() => {
+        console.log('Failed to update stats');
+      });
+  };
+};
+
+export const updateUnixTime = time => {
+  return dispatch => {
+    dispatch({
+      type: UPDATE_UNIX_TIME,
+      payload: time
+    });
   };
 };

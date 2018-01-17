@@ -5,6 +5,10 @@ import Timer from '../components/Timer';
 import initThree from '../scripts/initThree.js';
 import initCannon from '../scripts/initCannon.js';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { updateStats } from '../actions';
+
 class Game extends Component {
   constructor() {
     super();
@@ -74,4 +78,14 @@ class Game extends Component {
   };
 }
 
-export default Game;
+const mapStateToProps = state => {
+  return {
+    time: state.time
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ updateStats }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Game);
