@@ -18,7 +18,7 @@ class Game extends Component {
     return (
       <div className="App" id="Game">
         <GameNav />
-        {this.state.startTimer ? <Timer /> : ''}
+        {this.state.startTimer ? <Timer /> : null}
       </div>
     );
   }

@@ -82,8 +82,7 @@ export default context => {
   flag.addEventListener(
     'collide',
     e => {
-      context.props.updateStats(context.props.time);
-      // context.props.history.push('/leaderboard');
+      context.props.updateStats(context.props.time, context.props.history);
     },
     false
   );

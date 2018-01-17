@@ -84,7 +84,7 @@ export const getStats = () => {
   };
 };
 
-export const updateStats = time => {
+export const updateStats = (time, history) => {
   const unixTimeStamp = time[1] - time[0];
   const seconds = Math.floor((unixTimeStamp / 1000) % 60);
   const minutes = Math.floor((unixTimeStamp / 1000 / 60) % 60);
@@ -98,11 +98,10 @@ export const updateStats = time => {
     axios
       .put(`${ROOT_URL}/stats`, statsObj)
       .then(response => {
-        console.log(response);
         dispatch({
-          type: UPDATE_STATS,
-          payload: response.data
+          type: UPDATE_STATS
         });
+        history.push('/leaderboard');
       })
       .catch(() => {
         console.log('Failed to update stats');
