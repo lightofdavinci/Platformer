@@ -29,8 +29,12 @@ class Game extends Component {
     this.animate();
   }
 
+  componentWillUnmount() {
+    cancelAnimationFrame(this.raf);
+  }
+
   animate = () => {
-    requestAnimationFrame(this.animate);
+    this.raf = requestAnimationFrame(this.animate);
     this.updatePhysics();
     this.renderGame();
   };
