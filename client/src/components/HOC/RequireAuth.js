@@ -11,7 +11,7 @@ export default ComposedComponent => {
 
     render() {
       if (!this.props.authenticated) return <div>No Auth</div>;
-      return <ComposedComponent />;
+      return <ComposedComponent history={this.props.history} />;
     }
   }
 

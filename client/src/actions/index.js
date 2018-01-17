@@ -103,8 +103,8 @@ export const updateStats = (time, history) => {
         });
         history.push('/leaderboard');
       })
-      .catch(() => {
-        console.log('Failed to update stats');
+      .catch(err => {
+        console.log('Failed to update stats ', err);
       });
   };
 };
