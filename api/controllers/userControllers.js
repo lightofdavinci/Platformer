@@ -92,7 +92,7 @@ const updateUserStats = (req, res) => {
   const { unixTimeStamp, time } = req.body;
   User.findOne({ username }, (err, user) => {
     if (err) { return sendUserError('Couldn\'t find user', res); }
-    if (user.stats.unixTimeStamp <= unixTimeStamp) {
+    if (user.stats.unixTimeStamp <= unixTimeStamp && user.stats.unixTimeStamp !== null) {
       return res.send(user.stats);
     }
     user.stats = { unixTimeStamp, time };
