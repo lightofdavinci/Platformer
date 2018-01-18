@@ -1,1 +1,2 @@
-# rolling ball game, physical 3D platformer maze.
+# Introduction
+![Preview](client/src/images/preview.gif?raw=true "Preview")

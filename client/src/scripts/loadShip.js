@@ -15,7 +15,10 @@ import reducedShip from '../obj/reducedPirate.obj';
 export const loadShip = context => {
   const onProgress = xhr => {
     if (xhr.lengthComputable) {
-      // console.log(Math.round(xhr.loaded / xhr.total * 100, 2) + '% downloaded');
+      console.log(
+        Math.round(xhr.loaded / xhr.total * 100, 2) +
+          '% downloaded three.js ship'
+      );
     }
   };
   const onError = xhr => {
@@ -51,7 +54,9 @@ export const loadShip = context => {
 export const loadShipBody = context => {
   const onProgress = xhr => {
     if (xhr.lengthComputable) {
-      // console.log( Math.round(xhr.loaded / xhr.total * 100, 2) + '% downloaded' );
+      console.log(
+        Math.round(xhr.loaded / xhr.total * 100, 2) + '% downloaded cannon.js'
+      );
     }
   };
   const onError = xhr => {
