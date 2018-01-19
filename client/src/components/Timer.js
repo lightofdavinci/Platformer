@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import { updateUnixTime } from '../actions';
 
 import '../styles/Timer.css';
-import { setInterval } from 'timers';
 
 class Timer extends Component {
   constructor() {

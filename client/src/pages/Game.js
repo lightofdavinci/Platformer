@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import GameNav from '../components/GameNav';
 import Timer from '../components/Timer';
+import Preloader from '../components/Preloader';
 
-import initThree from '../scripts/initThree.js';
-import initCannon from '../scripts/initCannon.js';
+import initThree from '../scripts/initThree';
+import initCannon from '../scripts/initCannon';
+import animate from '../scripts/animate';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -12,13 +14,17 @@ import { updateStats } from '../actions';
 class Game extends Component {
   constructor() {
     super();
-    this.state = { startTimer: false };
+    this.state = {
+      startTimer: false,
+      preloader: true
+    };
   }
   render() {
     return (
       <div className="App" id="Game">
         <GameNav />
         {this.state.startTimer ? <Timer /> : null}
+        {this.state.preloader ? <Preloader /> : null}
       </div>
     );
   }
@@ -26,7 +32,7 @@ class Game extends Component {
   componentDidMount() {
     initThree(this);
     initCannon(this);
-    this.animate();
+    animate(this);
   }
 
   componentWillUnmount() {

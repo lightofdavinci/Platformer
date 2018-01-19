@@ -14,12 +14,12 @@ import reducedShip from '../obj/reducedPirate.obj';
 
 export const loadShip = context => {
   const onProgress = xhr => {
-    if (xhr.lengthComputable) {
-      console.log(
-        Math.round(xhr.loaded / xhr.total * 100, 2) +
-          '% downloaded three.js ship'
-      );
-    }
+    // if (xhr.lengthComputable) {
+    // console.log(
+    //   Math.round(xhr.loaded / xhr.total * 100, 2) +
+    //     '% downloaded three.js ship'
+    // );
+    // }
   };
   const onError = xhr => {
     console.log(xhr);
@@ -43,6 +43,7 @@ export const loadShip = context => {
             }
           }
         });
+        object.name = 'shipMesh';
         context.scene.add(object);
       },
       onProgress,
@@ -53,11 +54,11 @@ export const loadShip = context => {
 
 export const loadShipBody = context => {
   const onProgress = xhr => {
-    if (xhr.lengthComputable) {
-      console.log(
-        Math.round(xhr.loaded / xhr.total * 100, 2) + '% downloaded cannon.js'
-      );
-    }
+    // if (xhr.lengthComputable) {
+    //   console.log(
+    //     Math.round(xhr.loaded / xhr.total * 100, 2) + '% downloaded cannon.js'
+    //   );
+    // }
   };
   const onError = xhr => {
     console.log(xhr);

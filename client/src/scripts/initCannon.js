@@ -105,7 +105,4 @@ export default context => {
     },
     false
   );
-
-  // Start the timer
-  context.setState({ startTimer: true });
 };
