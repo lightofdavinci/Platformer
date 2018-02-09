@@ -1,17 +1,16 @@
 # Introduction
-### Why did I choose such a personal project as a student of the lambda school ?
+### Why did I choose this personal project for Lambda School?
 * Project and outcome:
-> The initial goal was to create a simple rolling ball platformer game that would teach me many of the principles of working with 3D Objects, Components, Physics and JavaScript Frameworks. What I have as a minimum viable product is a three-dimensional web application with authentication and back-end with mongoDB to store the fastest time of players who moved the sphere from point A to point B.
+> My initial aim was to create a simple rolling-ball platform game that would teach me many principles in working with 3D 
+> Objects, Components, Physics and JavaScript Frameworks.  My minimum viable product is a 3-D web application using 
+> authentication and mongoDB to store the fastest player's time in navigating the sphere from beginning to end.
 * Project motivation:
-> The Internet is evolving to become the de-facto cyberspace or virtual environment facilitating communication,
-> business, and entertainment on a global scale. On the other hand, metaverses or virtual worlds are much younger 
-> when compared to other Web technologies. Virtual worlds are increasingly seen as more than game and interpreted 
-> within a business context rather than entertainment. The view that metaverses will play a significant role in the 
-> future is shared by many researchers and professionals in the field.
+> While the Internet evolves as the de-facto cyberspace, virtual environments increasingly facilitate global business and 
+> entertainment.  Metaverses (or virtual worlds) are among the newest developments to emerge as a business beyond mere 
+> gaming.  Many researchers and professionals in the field say that metaverses are poised to change the way we do business.
 * Impact:
-> 3D models have a potential to improve User Experience in the future. Also, it can be useful to know, 
-> if you are planning to add interesting interactivity to a website or develop applications for webVR.
-> Here is a common three.js example of mapping and organizing data in a virtual spaces.
+> 3D models can improve User Experience by adding novel interactivity to a website or develop applications for webVR.
+> Here is a common Three.js example of mapping and organizing data in a virtual space:
 ![Periodic](client/src/images/periodic.gif?raw=true "Periodic")
 
 # Resources & Tools
