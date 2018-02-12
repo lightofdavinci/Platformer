@@ -1,7 +1,8 @@
 const User = require('../models/userModels');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
-const { sendUserError } = require('../errors');
+const { sendUserError, sendServerError } = require('../errors');
 
 const BCRYPT_COST = 11;
 
@@ -12,46 +13,26 @@ const hashedPassword = (req, res, next) => {
   }
   bcrypt
     .hash(password, BCRYPT_COST)
-    .then((pw) => {
+    .then(pw => {
       req.password = pw;
       next();
     })
-    .catch((err) => {
+    .catch(err => {
       throw new Error(err);
     });
 };
 
-const loggedIn = (req, res, next) => {
-  const { username } = req.session;
-  if (!username) {
-    return sendUserError('User is not logged in', res);
-  }
-  User.findOne({ username }, (err, user) => {
-    if (err) {
-      sendUserError(err, res);
-    } else if (!user) {
-      sendUserError('User does exist', res);
-    } else {
-      req.user = user;
-      next();
-    }
+const verifyToken = (req, res, next) => {
+  const tkn = req.body.tkn || req.get('Authorization');
+  if (!tkn)  return res.status(401).send({ err: 'No token provided.' });
+  jwt.verify(tkn, process.env.SECRET, (err, decoded) => {
+  if (err) return sendServerError('Failed to authenticate token.', res);
+  req.userId = decoded.id;
+  next();
   });
-};
-
-// const restrictedPermissions = (req, res, next) => {
-//   const path = req.path;
-//   if (/restricted/.test(path)) {
-//     if (!req.session.username) {
-//       sendUserError('user not autorized', res);
-//       return;
-//     }
-//   }
-//   next();
-// };
+}
 
 module.exports = {
-  sendUserError,
   hashedPassword,
-  loggedIn,
-  // restrictedPermissions,
+  verifyToken
 };

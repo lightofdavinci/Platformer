@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const express = require('express');
-const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
@@ -14,14 +13,6 @@ mongoose.connect(process.env.MONGO_URI, { useMongoClient: true });
 
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
-
-server.use(
-  session({
-    secret: 'e5SPiqsEtjexkTj3Xqovsjzq8ovjfgVDFMfUzSmJO21dtXs4re',
-    resave: true,
-    saveUninitialized: true,
-  })
-);
 
 const corsOptions = {
   origin: 'http://localhost:3000',

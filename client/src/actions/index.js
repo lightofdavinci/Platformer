@@ -41,7 +41,8 @@ export const login = (username, password, history) => {
   return dispatch => {
     axios
       .post(`${ROOT_URL}/login`, { username, password })
-      .then(() => {
+      .then(res => {
+        localStorage.setItem('tkn', res.data.token);
         dispatch({
           type: USER_AUTHENTICATED
         });
@@ -53,25 +54,14 @@ export const login = (username, password, history) => {
   };
 };
 
-export const logout = () => {
-  return dispatch => {
-    axios
-      .post(`${ROOT_URL}/logout`)
-      .then(() => {
-        dispatch({
-          type: USER_UNAUTHENTICATED
-        });
-      })
-      .catch(() => {
-        dispatch(authError('Failed to log you out'));
-      });
-  };
-};
-
 export const getStats = () => {
   return dispatch => {
     axios
-      .get(`${ROOT_URL}/stats`)
+      .get(`${ROOT_URL}/stats`, {
+        headers: {
+          Authorization: localStorage.getItem('tkn')
+        }
+      })
       .then(response => {
         dispatch({
           type: GET_STATS,
@@ -92,7 +82,8 @@ export const updateStats = (time, history) => {
     ('0' + minutes).slice(-2) + ' : ' + ('0' + seconds).slice(-2);
   const statsObj = {
     unixTimeStamp,
-    time: statsTime
+    time: statsTime,
+    tkn: localStorage.getItem('tkn')
   };
   return dispatch => {
     axios

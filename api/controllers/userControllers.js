@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const User = require('../models/userModels');
 
-const { sendUserError } = require('../errors');
+const { sendUserError, sendServerError } = require('../errors');
 
 const loginUser = (req, res) => {
   const { username, password } = req.body;
@@ -12,21 +13,22 @@ const loginUser = (req, res) => {
   }
   User.findOne({ username }, (err, user) => {
     if (err || user === null) {
-      return sendUserError('No user found at that id', res);
+      return sendServerError('No user found at that id', res);
     }
     const hashedPw = user.passwordHash;
     bcrypt
       .compare(password, hashedPw)
-      .then((response) => {
+      .then(response => {
         if (!response) throw new Error();
-        req.session.username = username;
-        req.user = user;
       })
       .then(() => {
-        res.json({ success: true });
+        const token = jwt.sign({ id: user._id }, process.env.SECRET, {
+          expiresIn: 86400 // expires in 24 hours
+        });
+        res.status(200).send({ token });
       })
-      .catch((error) => {
-        return sendUserError(error, res);
+      .catch(error => {
+        return sendServerError(error, res);
       });
   });
 };
@@ -49,33 +51,8 @@ const createUser = (req, res) => {
   });
 };
 
-const logout = (req, res) => {
-  if (!req.session.username) {
-    return sendUserError('User is not logged in', res);
-  }
-  req.session.username = null;
-  res.json({ success: true });
-};
-
-const getAllUsers  = (req, res) => {
-  User.find({}, (err, users) => {
-    if (err) {
-      return sendUserError('500', res);
-    }
-    res.json(users);
-  });
-};
-
-const removeAllUsers  = (req, res) => {
-  User.remove({}, (err, users) => {
-    if (err) {
-      return sendUserError('500', res);
-    }
-    res.json({ status: 'success' });
-  });
-};
-
 const getAllStats = (req, res) => {
+  if(!req.userId) return sendUserError('User is not logged in', res);
   User.find({})
     .sort('stats.unixTimeStamp')
     .select("username stats")
@@ -83,21 +60,19 @@ const getAllStats = (req, res) => {
     .then(stats => {
       res.json(stats);
     })
-    .catch(err => sendUserError(err, res));
+    .catch(err => sendServerError(err, res));
 };
 
 const updateUserStats = (req, res) => {
-  const username = req.session.username;
-  if (!username) { return sendUserError('User is not logged in', res); }
   const { unixTimeStamp, time } = req.body;
-  User.findOne({ username }, (err, user) => {
-    if (err) { return sendUserError('Couldn\'t find user', res); }
+  User.findById(req.userId , (err, user) => {
+    if (err) { return sendServerError('Couldn\'t find user', res); }
     if (user.stats.unixTimeStamp <= unixTimeStamp && user.stats.unixTimeStamp !== null) {
       return res.send(user.stats);
     }
     user.stats = { unixTimeStamp, time };
     user.save((err, updatedUser) => {
-      if (err) { return sendUserError('Couldn\'t save changes', res); }
+      if (err) { return sendServerError('Couldn\'t save changes', res); }
       res.send(updatedUser.stats);
     });
   });
@@ -106,9 +81,6 @@ const updateUserStats = (req, res) => {
 module.exports = {
   createUser,
   loginUser,
-  logout,
-  getAllUsers,
   getAllStats,
-  removeAllUsers,
   updateUserStats
 };
