@@ -1,5 +1,5 @@
 const userControllers = require('../controllers/userControllers');
-const { hashedPassword, verifyToken } = require('../utils');
+const { hashedPassword, verifyToken, checkIfAuthenticated } = require('../utils');
 
 module.exports = (app) => {
   app
@@ -9,8 +9,11 @@ module.exports = (app) => {
     .route('/login')
     .post(userControllers.loginUser);
   app
+    .route('/jwt')
+    .get(checkIfAuthenticated);
+  app
     .route('/stats')
-    .get(verifyToken, userControllers.getAllStats);
+    .get(userControllers.getAllStats);
   app
     .route('/stats')
     .put(verifyToken, userControllers.updateUserStats);

@@ -1,15 +1,11 @@
 import axios from 'axios';
 
-// Fixes an issue with axios and express-session where sessions
-// would not persist between routes
-axios.defaults.withCredentials = true;
 const ROOT_URL = 'https://sphere-game.herokuapp.com';
 
 export const USER_REGISTERED = 'USER_REGISTERED';
 export const USER_AUTHENTICATED = 'USER_AUTHENTICATED';
-export const USER_UNAUTHENTICATED = 'USER_UNAUTHENTICATED';
 export const AUTHENTICATION_ERROR = 'AUTHENTICATION_ERROR';
-export const CHECK_IF_AUTHENTICATED = 'CHECK_IF_AUTHENTICATED';
+export const USER_UNAUTHENTICATED = 'USER_UNAUTHENTICATED';
 export const GET_STATS = 'GET_STATS';
 export const UPDATE_STATS = 'UPDATE_STATS';
 export const UPDATE_UNIX_TIME = 'UPDATE_UNIX_TIME';
@@ -54,14 +50,31 @@ export const login = (username, password, history) => {
   };
 };
 
-export const getStats = () => {
+export const checkIfAuthenticated = () => {
   return dispatch => {
     axios
-      .get(`${ROOT_URL}/stats`, {
+      .get(`${ROOT_URL}/jwt`, {
         headers: {
           Authorization: localStorage.getItem('tkn')
         }
       })
+      .then(res => {
+        dispatch({
+          type: USER_AUTHENTICATED
+        });
+      })
+      .catch(() => {
+        dispatch({
+          type: USER_UNAUTHENTICATED
+        });
+      });
+  };
+};
+
+export const getStats = () => {
+  return dispatch => {
+    axios
+      .get(`${ROOT_URL}/stats`)
       .then(response => {
         dispatch({
           type: GET_STATS,

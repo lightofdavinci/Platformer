@@ -1,4 +1,5 @@
-.not-found {
+.not-found,
+.auth-err {
   text-align: center;
   color: #e6e4be;
 }

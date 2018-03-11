@@ -23,16 +23,26 @@ const hashedPassword = (req, res, next) => {
 };
 
 const verifyToken = (req, res, next) => {
-  const tkn = req.body.tkn || req.get('Authorization');
-  if (!tkn)  return res.status(401).send({ err: 'No token provided.' });
+  const tkn = req.body.tkn;
+  if (!tkn) return res.status(401).send({ err: 'No token provided.' });
   jwt.verify(tkn, process.env.SECRET, (err, decoded) => {
-  if (err) return sendServerError('Failed to authenticate token.', res);
-  req.userId = decoded.id;
-  next();
+    if (err) return sendServerError('Failed to authenticate token.', res);
+    req.userId = decoded.id;
+    next();
+  });
+}
+
+const checkIfAuthenticated = (req, res) => {
+  const tkn = req.get('Authorization');
+  if (!tkn) return res.status(401).send({ authenticated: false });
+  jwt.verify(tkn, process.env.SECRET, (err, decoded) => {
+    if (err) return res.status(500).send({ authenticated: false });
+    res.status(200).send({ authenticated: true });
   });
 }
 
 module.exports = {
   hashedPassword,
-  verifyToken
+  verifyToken,
+  checkIfAuthenticated
 };

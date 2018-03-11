@@ -27,17 +27,13 @@ const loginUser = (req, res) => {
         });
         res.status(200).send({ token });
       })
-      .catch(error => {
-        return sendServerError(error, res);
-      });
+      .catch(error => sendServerError(error, res));
   });
 };
 
 const createUser = (req, res) => {
   const { username } = req.body;
-  if (!username) {
-    return sendUserError('Username is required', res);
-  }
+  if (!username) return sendUserError('Username is required', res);
   const passwordHash = req.password;
   const newUser = new User({ username, passwordHash });
   newUser.save((err, savedUser) => {
@@ -52,27 +48,24 @@ const createUser = (req, res) => {
 };
 
 const getAllStats = (req, res) => {
-  if(!req.userId) return sendUserError('User is not logged in', res);
   User.find({})
     .sort('stats.unixTimeStamp')
     .select("username stats")
     .exec()
-    .then(stats => {
-      res.json(stats);
-    })
+    .then(stats => res.json(stats))
     .catch(err => sendServerError(err, res));
 };
 
 const updateUserStats = (req, res) => {
   const { unixTimeStamp, time } = req.body;
-  User.findById(req.userId , (err, user) => {
+  User.findById(req.userId, (err, user) => {
     if (err) { return sendServerError('Couldn\'t find user', res); }
     if (user.stats.unixTimeStamp <= unixTimeStamp && user.stats.unixTimeStamp !== null) {
       return res.send(user.stats);
     }
     user.stats = { unixTimeStamp, time };
     user.save((err, updatedUser) => {
-      if (err) { return sendServerError('Couldn\'t save changes', res); }
+      if (err) return sendServerError('Couldn\'t save changes', res);
       res.send(updatedUser.stats);
     });
   });
