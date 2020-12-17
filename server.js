@@ -9,7 +9,7 @@ const server  = express();
 require('dotenv').config();
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGO_URI, { useMongoClient: true });
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
