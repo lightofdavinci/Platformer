@@ -13,7 +13,7 @@
     "redux": "^3.7.2",
     "redux-form": "^7.2.0",
     "redux-thunk": "^2.2.0",
-    "three": "^0.87.1",
+    "three": "^0.125.0",
     "three-orbitcontrols": "^1.2.1",
     "three-react-obj-loader": "^1.0.4",
     "three-to-cannon": "^1.1.2"
